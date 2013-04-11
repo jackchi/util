@@ -26,12 +26,11 @@ while True:
 		except:
 			print ("Wrong Input!")
 
-	sn= quicksort(numbers)
-	pprint.pprint(sn)
+		sn= quicksort(numbers)
+		pprint.pprint(sn)
 
-	quit = str(raw_input("Continue(y/n)?"))
-	if quit =='y' : 
-		print ("ok!")
-	elif quit == 'n' :
-		break
-
+		quit = str(raw_input("Continue(y/n)?"))
+		if quit =='y' :
+			print ("ok!")
+		elif quit == 'n' :
+			break
