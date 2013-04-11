@@ -1,0 +1,19 @@
+#Source global definitions (if any)
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# Because I'm lazy
+alias home='cd ~/'
+alias ..='cd ..'
+alias db='cd ~/Documents/Dropbox'
+
+# Prevents accidentall clobbering files
+alias mkdir='mkdir -p'
+alias df='df -kTh'
+alias du='du -kh'
+alias rm='rm -i'
+alias cp='cp -i'
+
+# MacPorts Installer addition on 2012-07-25_at_18:37:42: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH

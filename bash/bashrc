@@ -1,0 +1,24 @@
+source ~/.bash_profile
+
+alias ..='cd ..'
+alias df='df -s'
+alias ls='ls -G'
+alias ll='ls -l'
+alias la='ls -a'
+
+#Color changing for LS -G : directories in red : files in green
+# Directory: red
+# Symbolic Link: magenta
+# Socket: green
+# Pipes: brown
+# Executables: Bold light grey
+# Block Special: blue on cyan
+# more in ls -G CLICOLORS
+
+#Color Schemes
+PS1="\[\e[0;32m\]\u\[\e[m\] \[\e[1;36m\]\w\[\e[m\] \[\e[1;32m\]\$ \[\e[m\]\[\e[1;37m\]"
+
+export PS1
+export TERM=xterm-color
+export CLICOLOR=true
+export LSCOLORS=bxfxcxdxHxegedabagacad
