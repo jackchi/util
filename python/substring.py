@@ -57,7 +57,7 @@ def main():
 
 	if substr:	
 		for word in args:	
-			print 'Word: %s has substring:\n' % (word) + str(toSubString(word))
+			print 'Word: %s has substring:\n' % (word) + str(toSubString(word)).strip('[]')
 
 	if longest:		
 		tempLongest = longestsubstr(args[0], args[1])
