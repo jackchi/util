@@ -16,7 +16,13 @@ def perm(s):
 		for i in range(len(s)):
 			perms.append(sub_perm[:i] + s[0] + sub_perm[i:])
 	return perms
-	
+
+def permutations(s):
+	if not s: 
+		yield ''
+	for i, c in enumerate(s):
+		for perm in permutations(s[:i] + s[i+1:]):
+			yield c + perm
 
 def main():
 	args = sys.argv[1:]
@@ -26,6 +32,9 @@ def main():
 		sys.exit(1)
 	for word in args:	
 		print '%s has these permutations:\n' % word + str(perm(word)).strip('[]')
+
+for p in permutations('animal'):
+	print p
 
 if __name__ == '__main__':
 	main()			
