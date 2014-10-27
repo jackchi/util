@@ -33,8 +33,5 @@ def main():
 	for word in args:	
 		print '%s has these permutations:\n' % word + str(perm(word)).strip('[]')
 
-for p in permutations('animal'):
-	print p
-
 if __name__ == '__main__':
 	main()			
