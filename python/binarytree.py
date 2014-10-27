@@ -3,6 +3,7 @@
 # Copyright 2014 Jack Chi
 
 # Binary Tree Nodes Representation
+# 
 import Queue
 import unittest
 
@@ -53,9 +54,13 @@ class BinaryTreeTest(unittest.TestCase):
 		self.assertEqual(
 			self.tree.getRootVal(), 'newRoot'
 			)	
-			
+	
+	def test_5(self):
+		self.assertIsNone(self.tree.DFSearch('nothing again'))
+
 
 class BinaryTree:
+
 	def __init__(self, rootObj):
 		self.key = rootObj
 		self.leftChild = None
@@ -90,6 +95,10 @@ class BinaryTree:
 		return self.key
 
 	def BFSearch(self, target):
+		""" Using a Queue to iteratively search adjacent Nodes
+		before traversing down the tree
+		"""
+
 		queue = Queue.Queue()
 		queue.put(self)
 		
@@ -102,6 +111,15 @@ class BinaryTree:
 			if r.rightChild != None:
 				queue.put(r.rightChild)	
 		return None
+
+	def DFSearch(self, target):
+		if self.key == target:
+			return self
+		else:
+			if not self.getLeftChild():
+				self.getLeftChild().DFSearch(target)
+			if not self.getRightChild():
+				self.getRightChild().DFSearch(target)
 
 if __name__ == '__main__':
     unittest.main()
