@@ -3,7 +3,8 @@
 # Copyright 2014 Jack Chi
 
 # Binary Tree Nodes Representation
-# 
+# Using Nodes and References to model a Binary Tree
+
 import Queue
 import unittest
 
@@ -57,6 +58,9 @@ class BinaryTreeTest(unittest.TestCase):
 	
 	def test_5(self):
 		self.assertIsNone(self.tree.DFSearch('nothing again'))
+		self.assertEqual(
+			self.tree.DFSearch('newRoot').key, 
+			'newRoot')
 
 
 class BinaryTree:
@@ -95,7 +99,7 @@ class BinaryTree:
 		return self.key
 
 	def BFSearch(self, target):
-		""" Using a Queue to iteratively search adjacent Nodes
+		""" Using a Queue to iteratively search adjacent nodes
 		before traversing down the tree
 		"""
 
@@ -113,6 +117,9 @@ class BinaryTree:
 		return None
 
 	def DFSearch(self, target):
+		""" Using recursion to search leftmost depth nodes
+		before traversing across adjacent nodes
+		"""
 		if self.key == target:
 			return self
 		else:
