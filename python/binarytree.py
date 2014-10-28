@@ -62,6 +62,10 @@ class BinaryTreeTest(unittest.TestCase):
 			self.tree.DFSearch('newRoot').key, 
 			'newRoot')
 
+	def test_6(self):	
+		self.assertEqual(BinaryTree.getHeight(None), 0)
+		self.assertEqual(BinaryTree.getHeight(self.tree), 3)
+		self.assertEqual(BinaryTree.getHeight(BinaryTree('one')), 1)
 
 class BinaryTree:
 
@@ -97,6 +101,14 @@ class BinaryTree:
 
 	def getRootVal(self):
 		return self.key
+
+	@staticmethod	
+	def getHeight(node):
+		if node == None:
+			return 0
+		else: 
+			return max(BinaryTree.getHeight(node.getLeftChild()), 
+				    BinaryTree.getHeight(node.getRightChild())) + 1	
 
 	def BFSearch(self, target):
 		""" Using a Queue to iteratively search adjacent nodes
