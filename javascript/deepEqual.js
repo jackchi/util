@@ -34,3 +34,4 @@ console.log(deepEqual(obj, {here: {is: "an"}, object: 2})); // true
 console.log(deepEqual([1,2,3], [1,2,3])); // true
 console.log(deepEqual([1,2,3], [1,2,3,3])); // false
 console.log(deepEqual(null, null)); // true
+
