@@ -9,8 +9,7 @@ import sys
 
 def combination(string):
 	""" Generator to yield the current combination """
-	if not string:
-		yield ''
+	yield ''
 	for i, d in enumerate(string):
 		for comb in combination(string[i+1:]):
 			yield d + comb
@@ -24,6 +23,7 @@ def main():
 
 	combinations = []
 	for c in combination(args[0]):
+		print c
 		combinations.append(c)
 
 	print combinations	

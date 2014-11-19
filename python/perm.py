@@ -33,5 +33,7 @@ def main():
 	for word in args:	
 		print '%s has these permutations:\n' % word + str(perm(word)).strip('[]')
 
-if __name__ == '__main__':
-	main()			
+# if __name__ == '__main__':
+# 	main()		
+
+print [p for p in permutations("go")]	
