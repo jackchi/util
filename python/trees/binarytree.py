@@ -6,75 +6,7 @@
 # Using Nodes and References to model a Binary Tree
 
 import Queue
-import unittest
 
-class BinaryTreeTest(unittest.TestCase):
-
-	@classmethod
-	def setUpClass(self):
-		self.tree = BinaryTree('root')
-
-	@classmethod	
-	def tearUpClass(self):
-		del self.tree
-
-	# def test_1(self):
-	# 	self.assertIsInstance(
-	# 		self.tree,
-	# 		BinaryTree
-	# 	)
-
-	# 	self.assertIsNone(self.tree.getLeftChild())
-
-	# 	self.assertIsNone(self.tree.getRightChild())
-
-	# def test_2(self):
-	# 	self.tree.insertLeft('left')
-	# 	self.tree.insertRight('right')
-
-	# 	self.assertEqual(
-	# 		self.tree.getLeftChild().key, 'left')
-	# 	self.assertEqual(
-	# 		self.tree.getRightChild().key, 'right')
-
-	# def test_3(self):
-	# 	self.tree.getLeftChild().insertLeft('leftmost')
-	# 	self.tree.getRightChild().insertRight('rightmost')
-
-	# 	self.assertIsNone(self.tree.BFSearch('nothing'))
-	# 	self.assertEqual(
-	# 		self.tree.BFSearch('leftmost').key, 
-	# 		'leftmost')
-	# 	self.assertEqual(
-	# 		self.tree.BFSearch('rightmost').key, 
-	# 		'rightmost')	
-
-	# def test_4(self):
-	# 	self.tree.setRootVal('newRoot')
-
-	# 	self.assertEqual(
-	# 		self.tree.getRootVal(), 'newRoot'
-	# 		)	
-	
-	# def test_5(self):
-	# 	self.assertIsNone(self.tree.DFSearch('nothing again'))
-	# 	self.assertEqual(
-	# 		self.tree.DFSearch('newRoot').key, 
-	# 		'newRoot')
-
-	# def test_6(self):	
-	# 	self.assertEqual(BinaryTree.getHeight(None), 0)
-	# 	self.assertEqual(BinaryTree.getHeight(self.tree), 3)
-	# 	self.assertEqual(BinaryTree.getHeight(BinaryTree('one')), 1)
-
-	def test_7(self):
-		b= BinaryTree("Root")
-		b.insertLeft("leftmost")
-		b.insertRight("right")
-		b.insertLeft("left")
-		self.assertFalse(isLeaf(b))
-		self.assertTrue(isLeaf(b.getRightChild()))
-		b.DFPrint()
 
 def isLeaf(node):
 	return not node.getLeftChild() and not node.getRightChild()
@@ -105,6 +37,21 @@ class BinaryTree:
 			t = BinaryTree(newNode)
 			t.rightChild = self.rightChild
 			self.rightChild = t
+
+	def insert (self, newNode):
+		prev = None
+		curr = self
+		while curr:
+			prev = curr
+			if newNode < curr.key:
+				curr = curr.leftChild
+			else:
+				curr = curr.rightChild	
+		if newNode < prev.key:
+			prev.leftChild = BinaryTree(newNode)
+		else:
+			prev.rightChild = BinaryTree(newNode)
+
 
 	def getLeftChild(self):
 		return self.leftChild		
@@ -165,6 +112,4 @@ class BinaryTree:
 			return insert(self.key, self.getLeftChild().DFPrint(line) if self.getLeftChild() else -1, 
 				self.getRightChild().DFPrint(line) if self.getRightChild() else -1, line) 
 
-if __name__ == '__main__':
-    unittest.main()
-				
+
