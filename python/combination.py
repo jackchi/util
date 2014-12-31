@@ -15,6 +15,7 @@ def combination(string):
 			yield d + comb
 	
 
+
 def main():
 	args = sys.argv[1:]
 
