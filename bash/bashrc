@@ -1,12 +1,74 @@
-source ~/.bash_profile
+#Source global definitions (if any)
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
 
+# Because I'm lazy
+alias home='cd ~/'
+alias ..='cd ..'
 alias ..='cd ..'
 alias df='df -s'
 alias ls='ls -G'
 alias ll='ls -l'
 alias la='ls -a'
 
-#Color changing for LS -G : directories in red : files in green
+# Prevents accidentall clobbering files
+alias mkdir='mkdir -p'
+alias df='df -kTh'
+alias du='du -kh'
+alias rm='rm -i'
+alias cp='cp -i'
+
+# SmartThings shortcuts
+alias data='cd ~/git/data-management'
+alias devhub='ssh root@192.168.1.103'
+
+# VLC for OSX
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
+
+# SSH Agent Forwarding
+ssh-add ~/.ssh/id_rsa
+
+# Non-essential System, User-specific, daemons
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:~/bin
+
+export GPG_TTY=$(tty)
+
+#JENV 
+export PATH=$PATH:~/.jenv/bin
+eval "$(jenv init -)"
+
+#PYTHON Options
+export PYTHONSTARTUP=~/.pythonrc
+
+#JVM Options
+export JAVA_OPTS="-Djava.awt.headless=true -Xms1G -Xmx2G -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC"
+
+# Cassandra
+export CASSANDRA_BIN=/usr/local/cassandra/bin
+export PATH=$PATH:$CASSANDRA_BIN
+
+# Vert.x Path
+export VERTX_HOME=~/tools/vertx
+export PATH=$PATH:$VERTX_HOME/bin
+
+# Kafka Path
+export KAFKA_HOME=~/tools/kafka
+export PATH=$PATH:$KAFKA_HOME/bin
+
+#SmartThings local env
+export ST_ENV=local
+
+#SmartThings Video Env
+export VIDEO_CONN_CONF=jack
+
+# Git branch in prompt.
+
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 # Directory: red
 # Symbolic Link: magenta
 # Socket: green
@@ -16,9 +78,18 @@ alias la='ls -a'
 # more in ls -G CLICOLORS
 
 #Color Schemes
-PS1="\[\e[0;32m\]\u\[\e[m\] \[\e[1;36m\]\w\[\e[m\] \[\e[1;32m\]\$ \[\e[m\]\[\e[1;37m\]"
+PS1="\[\e[0;32m\]\u\[\e[m\] \[\e[1;36m\]\w\[\e[m\]\$(parse_git_branch)\[\033[00m\] \[\e[1;32m\]\$ \[\e[m\]\[\e[1;37m\]"
 
 export PS1
 export TERM=xterm-color
 export CLICOLOR=true
 export LSCOLORS=bxfxcxdxHxegedabagacad
+
+#nvm
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/binchi/.sdkman"
+[[ -s "/Users/binchi/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/binchi/.sdkman/bin/sdkman-init.sh"
+
